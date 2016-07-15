@@ -74,8 +74,8 @@ RUN wget -O /usr/share/dump1090-mutability/html/heatmapdata.csv https://dl.dropb
 # notes: 
 # The is the place where you can replace the config files with yourn own URL's.
 # If you use other config files, be sure you configure them before building the image. Don't use the default config files, because you won't be able to configure them!
-RUN wget -O /usr/share/dump1090-mutability/html/config.js       https://raw.githubusercontent.com/tedsluis/docker-dump1090/master/config.js   
-RUN wget -O /etc/default/dump1090-mutability                    https://raw.githubusercontent.com/tedsluis/docker-dump1090/master/dump1090-mutability
+RUN wget -O /usr/share/dump1090-mutability/html/config.js       https://raw.githubusercontent.com/sc0ttyd/docker-dump1090/master/config.js   
+RUN wget -O /etc/default/dump1090-mutability                    https://raw.githubusercontent.com/sc0ttyd/docker-dump1090/master/dump1090-mutability
 
 # Add terrain-limit rings. To enable this:
 # # create a panorama for your receiver location on heywhatsthat.com
@@ -85,18 +85,19 @@ RUN wget -O /etc/default/dump1090-mutability                    https://raw.gith
 # # wget -O /usr/share/dump1090-mutability/html/upintheair.json \
 # # 'http://www.heywhatsthat.com/api/upintheair.json?id=XXXX&refraction=0.25&alts=3048,9144'
 # # NB: altitudes are in _meters_, you can specify a list of altitudes
-RUN wget -O /usr/share/dump1090-mutability/html/upintheair.json 'http://www.heywhatsthat.com/api/upintheair.json?id=M7R4MI9M&refraction=0.25&alts=100,1000,10000'
+RUN wget -O /usr/share/dump1090-mutability/html/upintheair.json 'http://www.heywhatsthat.com/api/upintheair.json?id=VJCTH4C4&refraction=0.25&alts=100,1000,10000'
 
-# Open the firewall for http and incoming BEAST-format
+# Open the firewall for http and incoming BEAST-format, and SBS
 EXPOSE 80
 EXPOSE 30104
+EXPOSE 30003
 
 # Configure the webserver:
 RUN lighty-enable-mod dump1090
 
 # Create startdump1090.sh script
 # note: Change the default IP address of the remote dump1090 source in the startdump1090.sh script or specify the script with the IP address while you start the container!
-RUN wget -O /usr/share/dump1090-mutability/startdump1090.sh https://raw.githubusercontent.com/tedsluis/docker-dump1090/master/startdump1090.sh
+RUN wget -O /usr/share/dump1090-mutability/startdump1090.sh https://raw.githubusercontent.com/sc0ttyd/docker-dump1090/master/startdump1090.sh
 RUN chmod 775 /usr/share/dump1090-mutability/startdump1090.sh
 
 # This is the place where you can put your own ADS-B BEAST source.
