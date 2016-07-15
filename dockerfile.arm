@@ -85,7 +85,7 @@ RUN wget -O /etc/default/dump1090-mutability                    https://raw.gith
 # # wget -O /usr/share/dump1090-mutability/html/upintheair.json \
 # # 'http://www.heywhatsthat.com/api/upintheair.json?id=XXXX&refraction=0.25&alts=3048,9144'
 # # NB: altitudes are in _meters_, you can specify a list of altitudes
-RUN wget -O /usr/share/dump1090-mutability/html/upintheair.json 'http://www.heywhatsthat.com/api/upintheair.json?id=VJCTH4C4&refraction=0.25&alts=100,1000,10000'
+RUN wget -O /usr/share/dump1090-mutability/html/upintheair.json 'http://www.heywhatsthat.com/api/upintheair.json?id=U046EF67&refraction=0.25&alts=100,1000,10000'
 
 # Open the firewall for http and incoming BEAST-format, and SBS
 EXPOSE 80
